@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Funds App</title>
+
+    <!-- libs -->
+    <script src="js/lib/jquery.js"></script>
+    <script src="js/lib/underscore.js"></script>
+    <script src="js/lib/backbone.js"></script>
+
+    <!-- client templating -->
+    <!--<script src="js/lib/mustache.js"></script>-->
+    <script src="js/lib/ICanHaz.js"></script>
+
+    <!-- your app -->
+    <script src="js/models/fund.js"></script>
+    <script src="js/models/fund-collection.js"></script>
+    <script src="js/models/fund-category.js"></script>
+    <script src="js/models/fund-category-collection.js"></script>
+    <script src="js/models/app.js"></script>
+
+    <script src="js/views/fund-categories.js"></script>
+    <script src="js/views/funds.js"></script>
+    <script src="js/views/app.js"></script>
+
+    <script src="js/controllers/app.js"></script>
+
+    <!-- ICanHaz templates -->
+    <script id="app" type="text/html">
+      <h1>Funds App</h1>
+      <ul id="fund_categories">
+      {{#fundCategories}}
+        <li id="{{htmlId}}">{{name}}</li>
+      {{/fundCategories}}
+      </ul>
+    </script>
+
+    <script id="fund" type="text/html">
+      <li id="{{ htmlId }}"><span class="ticker">{{ ticker }}</span> <span>{{ name }}</span></li>
+    </script>
+
+    <script id="fundCategory" class="partial" type="text/html">
+        {{>fundCategory}}
+    </script>
+
+    <!-- Backbone initialization -->
+    <script>    
+      $(document).ready(function () {
+        // init our app
+        window.app = AppController.init();
+
+        // draw our main view
+        $('body').append(app.view.render().el); 
+      });   
+    </script>
+
+  </head>
+  <body></body>
+</html>
